@@ -26,7 +26,6 @@ const server = http.createServer((req, res) =>
                 const components = parseAuthorizationHeader(req.headers.authorization);
                 // Fetch pubkey from keyId
                 if (verifyAuthorization(components, {
-                    content: data,
                     headers: req.headers,
                     method: req.method || '',
                     path: req.url || ''

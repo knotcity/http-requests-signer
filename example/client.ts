@@ -37,7 +37,6 @@ const req = http.request('http://localhost:8080?id=50', {
 });
 
 const auth = generateAuthorization({
-    content,
     headers: req.getHeaders(),
     method: req.method,
     path: req.path

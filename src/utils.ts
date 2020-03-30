@@ -9,7 +9,6 @@ export type OrderedHeaderList = Array<{
 export interface DenormalizedData
 {
     headers: { [header: string]: number | string | string[] | undefined };
-    content: any;
     method: string;
     path: string;
 }
@@ -17,7 +16,6 @@ export interface DenormalizedData
 export interface NormalizedData
 {
     headers: OrderedHeaderList;
-    content: string;
 }
 
 export interface AuthorizationHeaderComponents
@@ -62,7 +60,6 @@ export function stringifyNormalizedData(data: NormalizedData)
         const val = h.values.map(v => v.split(/\r?\n|\r/g).map(v => v.trim()).join(' ')).map(v => v.length == 0 ? ' ' : v).join(', ');
         components.push(h.name + ": " + val);
     }
-    components.push(data.content);
     return components.join('\n');
 }
 
@@ -105,27 +102,8 @@ export function normalizeData(data: DenormalizedData, config: { headers: string[
             }
         }
     }
-    let content: string;
-    switch (typeof (data.content))
-    {
-        case 'string':
-            content = data.content;
-            break;
-        case 'number':
-        case 'boolean':
-            content = data.content.toString();
-            break;
-        case 'undefined':
-            content = "";
-            break;
-        case 'object':
-            content = JSON.stringify(data.content);
-            break;
-        default:
-            throw new Error("Unsupported content type: " + typeof (data.content));
-    }
+   
     return {
-        headers,
-        content
+        headers
     } as NormalizedData;
 }
