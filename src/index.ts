@@ -2,7 +2,7 @@ import crypto = require('crypto');
 
 import { verify } from './verifier';
 import { sign, buildAuthorizationHeader } from './signer';
-import { normalizeData, stringifyNormalizedData } from './utils';
+import { normalizeData, stringifyNormalizedData, DenormalizedData, AuthorizationHeaderComponents, Hash, Algo } from './utils';
 
 export function generateECKeyPair()
 {
@@ -40,3 +40,5 @@ export function verifyAuthorization(components: AuthorizationHeaderComponents, d
     const stringData = stringifyNormalizedData(normalized);
     return verify(stringData, components.signature, pubKey, components.hash);
 }
+
+export { parseAuthorizationHeader } from './verifier';

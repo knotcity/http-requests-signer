@@ -1,3 +1,34 @@
+export type Algo = 'rsa' | 'dsa' | 'ecdsa';
+export type Hash = 'sha256' | 'sha512';
+
+export type OrderedHeaderList = Array<{
+    name: string,
+    values: string[]
+}>;
+
+export interface DenormalizedData
+{
+    headers: { [header: string]: number | string | string[] | undefined };
+    content: any;
+    method: string;
+    path: string;
+}
+
+export interface NormalizedData
+{
+    headers: OrderedHeaderList;
+    content: string;
+}
+
+export interface AuthorizationHeaderComponents
+{
+    keyId: string;
+    algorithm: Algo;
+    hash: Hash;
+    headers: string[];
+    signature: string
+}
+
 export const PK_ALG = ['rsa', 'dsa', 'ecdsa'];
 export const HASH_ALG = ['sha256', 'sha512'];
 

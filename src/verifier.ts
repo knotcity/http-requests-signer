@@ -1,6 +1,6 @@
 import crypto = require('crypto');
 
-import { validateAlgorithm } from './utils';
+import { validateAlgorithm, Hash, AuthorizationHeaderComponents } from './utils';
 
 export function verify(data: string, signature: string, publicKey: string, hash: Hash)
 {
