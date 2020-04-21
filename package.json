@@ -1,6 +1,6 @@
 {
   "name": "@knot/request-signer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +12,9 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^12.12.32",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
+    "@types/node": "^12.12.36",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
     "eslint": "^6.8.0",
     "typescript": "^3.8.2"
   }
