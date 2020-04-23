@@ -36,7 +36,7 @@ export function validateAlgorithm(algorithm: string)
 
     if (alg.length !== 2)
     {
-        throw new Error(alg + ' is not a valid algorithm');
+        throw new Error(algorithm + ' is not a valid algorithm');
     }
 
     if (!PK_ALG.includes(alg[0]))
@@ -84,22 +84,11 @@ export function normalizeData(data: DenormalizedData, config: { headers: string[
             {
                 throw new Error("Missing header " + h + " in request");
             }
-            const existingHeader = headers.find(e => e.name == hl);
-            if (existingHeader)
+            if (headers.find(e => e.name == hl))
             {
-                if (Array.isArray(hv[1]))
-                {
-                    existingHeader.values.push(...hv[1]);
-                }
-                else
-                {
-                    existingHeader.values.push(hv[1]?.toString());
-                }
+                throw new Error("Tried to add the same header multiple times: " + h);
             }
-            else
-            {
-                headers.push({ name: hl, values: Array.isArray(hv[1]) ? hv[1] : [hv[1]?.toString()] });
-            }
+            headers.push({ name: hl, values: Array.isArray(hv[1]) ? hv[1].map(v => v.toString()) : [hv[1]?.toString()] });
         }
     }
    
