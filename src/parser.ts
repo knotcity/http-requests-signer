@@ -1,4 +1,4 @@
-import { validateAlgorithm, AuthorizationHeaderComponents } from './utils';
+import { validateAlgorithm, AuthorizationHeaderComponents, AuthorizationHeaderComponentsNullable } from './utils';
 
 export function parseAuthorizationHeader(auth: string)
 {
@@ -14,7 +14,7 @@ export function parseAuthorizationHeader(auth: string)
         throw new Error("Given authorization header do not start with Signature");
     }
     const parts = remaining.split(/,(?!(?=[^"]*"[^"]*(?:"[^"]*"[^"]*)*$))/g);
-    const output: Partial<AuthorizationHeaderComponents> = {};
+    const output: Partial<AuthorizationHeaderComponentsNullable> = {};
     for (const p of parts)
     {
         const eqIdx = p.indexOf('=');
@@ -51,5 +51,5 @@ export function parseAuthorizationHeader(auth: string)
                 throw new Error("Given authorization header is not valid, invalid key found in '" + p + "'");
         }
     }
-    return output as AuthorizationHeaderComponents;
+    return output as AuthorizationHeaderComponentsNullable;
 }

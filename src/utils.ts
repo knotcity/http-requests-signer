@@ -18,13 +18,23 @@ export interface NormalizedData
     headers: OrderedHeaderList;
 }
 
-export interface AuthorizationHeaderComponents
+interface AuthorizationHeaderComponentsBase
 {
     keyId: string;
+    signature: string
+    headers: string[];
+}
+
+export interface AuthorizationHeaderComponents extends AuthorizationHeaderComponentsBase
+{
+    algorithm: Algo;
+    hash: Hash;
+}
+
+export interface AuthorizationHeaderComponentsNullable extends AuthorizationHeaderComponentsBase
+{
     algorithm: Algo | null;
     hash: Hash | null;
-    headers: string[];
-    signature: string
 }
 
 export const PK_ALG = ['rsa', 'dsa', 'ecdsa'];

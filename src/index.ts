@@ -28,11 +28,11 @@ export function generateAuthorization(data: DenormalizedData, { headers, keyId, 
     return `Signature keyId="${keyId}",algorithm="${(hide_algorithm || true) ? 'hs2019' : `${algorithm}-${hash}`}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
 }
 
-export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DenormalizedData, pubKey: string, serverside_hash: Hash)
+export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DenormalizedData, pubKey: string)
 {
     const normalized = normalizeData(data, { headers: components.headers });
     const stringData = stringifyNormalizedData(normalized);
-    return verify(stringData, components.signature, pubKey, components.hash || serverside_hash);
+    return verify(stringData, components.signature, pubKey, components.hash);
 }
 
 export { parseAuthorizationHeader } from './parser';
