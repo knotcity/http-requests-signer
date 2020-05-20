@@ -21,8 +21,8 @@ export interface NormalizedData
 export interface AuthorizationHeaderComponents
 {
     keyId: string;
-    algorithm: Algo;
-    hash: Hash;
+    algorithm: Algo | null;
+    hash: Hash | null;
     headers: string[];
     signature: string
 }
@@ -32,6 +32,11 @@ export const HASH_ALG = ['sha256', 'sha512'];
 
 export function validateAlgorithm(algorithm: string)
 {
+    if (algorithm == 'hs2019')
+    {
+        return [null, null];
+    }
+
     var alg = algorithm.toLowerCase().split('-');
 
     if (alg.length !== 2)
@@ -65,7 +70,7 @@ export function stringifyNormalizedData(data: NormalizedData)
 
 export function normalizeData(data: DenormalizedData, config: { headers: string[] })
 {
-    if(config.headers.length == 0)
+    if (config.headers.length == 0)
     {
         throw new Error('At least one header must be signed');
     }
@@ -91,7 +96,7 @@ export function normalizeData(data: DenormalizedData, config: { headers: string[
             headers.push({ name: hl, values: Array.isArray(hv[1]) ? hv[1].map(v => v.toString()) : [hv[1]?.toString()] });
         }
     }
-   
+
     return {
         headers
     } as NormalizedData;

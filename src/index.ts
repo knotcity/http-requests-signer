@@ -20,19 +20,19 @@ export function generateECKeyPair()
     return keyPair;
 }
 
-export function generateAuthorization(data: DenormalizedData, { headers, keyId, privateKey, hash, algorithm }: { headers: string[], keyId: string, privateKey: string, hash: Hash, algorithm: Algo })
+export function generateAuthorization(data: DenormalizedData, { headers, keyId, privateKey, hash, algorithm, hide_algorithm }: { headers: string[], keyId: string, privateKey: string, hash: Hash, algorithm: Algo, hide_algorithm?: boolean })
 {
     const normalized = normalizeData(data, { headers });
     const stringData = stringifyNormalizedData(normalized);
     const signature = sign(stringData, privateKey, hash);
-    return `Signature keyId="${keyId}",algorithm="${algorithm}-${hash}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
+    return `Signature keyId="${keyId}",algorithm="${(hide_algorithm || true) ? 'hs2019' : `${algorithm}-${hash}`}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
 }
 
-export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DenormalizedData, pubKey: string)
+export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DenormalizedData, pubKey: string, serverside_hash: Hash)
 {
     const normalized = normalizeData(data, { headers: components.headers });
     const stringData = stringifyNormalizedData(normalized);
-    return verify(stringData, components.signature, pubKey, components.hash);
+    return verify(stringData, components.signature, pubKey, components.hash || serverside_hash);
 }
 
 export { parseAuthorizationHeader } from './parser';
