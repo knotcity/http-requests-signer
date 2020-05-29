@@ -1,4 +1,4 @@
-image: "node:dubnium-buster-slim"
+image: "node:erbium-alpine"
 
 stages:
   - test # Run unit tests
