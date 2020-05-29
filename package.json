@@ -1,6 +1,6 @@
 {
   "name": "@knot/request-signer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

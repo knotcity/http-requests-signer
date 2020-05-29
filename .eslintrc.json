@@ -26,7 +26,11 @@
         "indent": "off",
         "quotes": [
             "error",
-            "single"
+            "single",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
         ],
         "no-constant-condition": "off"
     }
