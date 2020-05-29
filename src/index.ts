@@ -1,12 +1,18 @@
 import crypto = require('crypto');
-
 import { sign } from './signer';
 import { verify } from './verifier';
-import { normalizeData, stringifyNormalizedData, DenormalizedData, AuthorizationHeaderComponents, Hash, Algo } from './utils';
+import {
+    Algo,
+    AuthorizationHeaderComponents,
+    DenormalizedData,
+    Hash,
+    normalizeData,
+    stringifyNormalizedData
+} from './utils';
 
 export function generateECKeyPair()
 {
-    const keyPair = crypto.generateKeyPairSync('ec', {
+    return crypto.generateKeyPairSync('ec', {
         namedCurve: 'secp521r1',
         publicKeyEncoding: {
             type: 'spki',
@@ -17,7 +23,6 @@ export function generateECKeyPair()
             format: 'pem'
         }
     });
-    return keyPair;
 }
 
 export function generateAuthorization(data: DenormalizedData, { headers, keyId, privateKey, hash, algorithm, hide_algorithm }: { headers: string[], keyId: string, privateKey: string, hash: Hash, algorithm: Algo, hide_algorithm?: boolean })
@@ -36,3 +41,4 @@ export function verifyAuthorization(components: AuthorizationHeaderComponents, d
 }
 
 export { parseAuthorizationHeader } from './parser';
+export type { AuthorizationHeaderComponents } from './utils';

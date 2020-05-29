@@ -47,7 +47,7 @@ export function validateAlgorithm(algorithm: string)
         return [null, null];
     }
 
-    var alg = algorithm.toLowerCase().split('-');
+    const alg = algorithm.toLowerCase().split('-');
 
     if (alg.length !== 2)
     {
@@ -73,7 +73,7 @@ export function stringifyNormalizedData(data: NormalizedData)
     for (const h of data.headers)
     {
         const val = h.values.map(v => v.split(/\r?\n|\r/g).map(v => v.trim()).join(' ')).map(v => v.length == 0 ? ' ' : v).join(', ');
-        components.push(h.name + ": " + val);
+        components.push(h.name + ': ' + val);
     }
     return components.join('\n');
 }
@@ -84,24 +84,24 @@ export function normalizeData(data: DenormalizedData, config: { headers: string[
     {
         throw new Error('At least one header must be signed');
     }
-    const headers: OrderedHeaderList = new Array();
+    const headers: OrderedHeaderList = [];
     for (const h of config.headers)
     {
         const hl = h.toLowerCase();
         if (hl === '(request-target)')
         {
-            headers.push({ name: '(request-target)', values: [data.method.toLowerCase() + " " + data.path] });
+            headers.push({ name: '(request-target)', values: [data.method.toLowerCase() + ' ' + data.path] });
         }
         else
         {
             const hv = Object.entries(data.headers).find(v => v[0].toLowerCase() === hl);
             if (!hv || hv[1] === undefined)
             {
-                throw new Error("Missing header " + h + " in request");
+                throw new Error('Missing header ' + h + ' in request');
             }
             if (headers.find(e => e.name == hl))
             {
-                throw new Error("Tried to add the same header multiple times: " + h);
+                throw new Error('Tried to add the same header multiple times: ' + h);
             }
             headers.push({ name: hl, values: Array.isArray(hv[1]) ? hv[1].map(v => v.toString()) : [hv[1]?.toString()] });
         }

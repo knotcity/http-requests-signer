@@ -23,6 +23,11 @@
         "linebreak-style": [ "error", "unix" ],
         "semi": [ "error", "always" ],
         "no-unused-vars": "off",
-        "indent": "off"
+        "indent": "off",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "no-constant-condition": "off"
     }
 }
