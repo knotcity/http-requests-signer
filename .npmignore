@@ -3,3 +3,4 @@ tsconfig.json
 src/
 .gitlab-ci.yml
 dist/tsconfig.tsbuildinfo
+.eslintrc.json
