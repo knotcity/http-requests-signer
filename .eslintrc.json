@@ -32,6 +32,14 @@
                 "allowTemplateLiterals": true
             }
         ],
-        "no-constant-condition": "off"
+        "no-constant-condition": "off",
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "block-spacing": [
+            "error",
+            "always"
+        ]
     }
 }
