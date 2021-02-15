@@ -92,6 +92,7 @@ pull-from-github:
     - schedules
   script:
     - git config --global user.name "knotcitybot"
+    - git remote set-url origin $KNOT_SSH_REPO_URL
     - if ! git config remote.github.url > /dev/null; then git remote add github "$GITHUB_REMOTE"; fi
     - git pull github community
     - git checkout -B community github/community
