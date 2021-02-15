@@ -48,7 +48,7 @@ deploy:
   before_script:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
   script:
-    - npm publish
+    - npm publish --access public
 
 .setup-ssh-keys:
   before_script:
