@@ -52,18 +52,18 @@ deploy:
 
 .setup-ssh-keys:
   before_script:
-  ## Create the SSH directory and give it the right permissions
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  ## Install ssh-agent if not already installed, it is required by Docker.
-  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-  ## Run ssh-agent (inside the build environment)
-  - eval $(ssh-agent -s)
-  ## Add the SSH key to the agent store
-  ## We're using tr to fix line endings which makes ed25519 keys work without extra base64 encoding.
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-  ## Configure git
-  - git config --global user.email "$KNOT_EMAIL"
+    ## Create the SSH directory and give it the right permissions
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    - 'command -v ssh-agent >/dev/null || ( apk update && apk add --no-cache openssh-client ca-certificates bash git )'
+    ## Run ssh-agent (inside the build environment)
+    - eval $(ssh-agent -s)
+    ## Add the SSH key to the agent store
+    ## We're using tr to fix line endings which makes ed25519 keys work without extra base64 encoding.
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    ## Configure git
+    - git config --global user.email "$KNOT_EMAIL"
 
 push-on-github:
   extends: .setup-ssh-keys
