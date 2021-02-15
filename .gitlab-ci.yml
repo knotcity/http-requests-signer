@@ -53,6 +53,7 @@ deploy:
 .setup-ssh-keys:
   variables:
     GIT_STRATEGY: clone
+    GIT_DEPTH: 0
   before_script:
     ## Create the SSH directory and give it the right permissions
     - mkdir -p ~/.ssh
