@@ -70,8 +70,6 @@ deploy:
     - chmod 644 ~/.ssh/known_hosts
     ## Configure git
     - git config --global user.email "$KNOT_EMAIL"
-    ## Create local branch
-    - git checkout -B "$CI_COMMIT_REF_NAME" "$CI_COMMIT_SHA"
 
 push-on-github:
   extends: .setup-ssh-keys
@@ -81,6 +79,7 @@ push-on-github:
   only:
     - master
   script:
+    - git checkout -B master "$CI_COMMIT_SHA"
     - git config --global user.name "knotcitybot"
     - if ! git config remote.github.url > /dev/null; then git remote add github "$GITHUB_REMOTE"; fi
     - git fetch --all
@@ -95,5 +94,6 @@ pull-from-github:
     - git config --global user.name "knotcitybot"
     - if ! git config remote.github.url > /dev/null; then git remote add github "$GITHUB_REMOTE"; fi
     - git pull github community
+    - git checkout -B community github/community
     - git config --global user.name "Knobot"
     - git push origin community
