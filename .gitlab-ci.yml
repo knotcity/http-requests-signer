@@ -74,7 +74,7 @@ push-on-github:
     - master
   script:
     - git config --global user.name "knotcitybot"
-    - git remote add github $GITHUB_REMOTE
+    - if ! git config remote.github.url > /dev/null; then git remote add github "$GITHUB_REMOTE"; fi
     - git fetch --all
     - git push github master
 
@@ -85,7 +85,7 @@ pull-from-github:
     - schedules
   script:
     - git config --global user.name "knotcitybot"
-    - git remote add github $GITHUB_REMOTE
+    - if ! git config remote.github.url > /dev/null; then git remote add github "$GITHUB_REMOTE"; fi
     - git pull github community
     - git config --global user.name "Knobot"
     - git push origin community
