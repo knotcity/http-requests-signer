@@ -73,7 +73,7 @@ push-on-github:
   script:
     - git config --global user.name "knotcitybot"
     - git remote add github $GITHUB_REMOTE
-    - git push github main
+    - git push github master
 
 pull-from-github:
   extends: .setup-ssh-keys
