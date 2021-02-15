@@ -9,7 +9,7 @@
     "lint": "eslint --ext ts src",
     "build": "tsc"
   },
-  "author": "",
+  "author": "Knot",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

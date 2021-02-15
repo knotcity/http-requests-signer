@@ -2,14 +2,14 @@ import { validateAlgorithm, AuthorizationHeaderComponentsNullable } from './util
 
 export function parseAuthorizationHeader(auth: string)
 {
-    const fspace = auth.indexOf(' ');
-    if (fspace == -1)
+    const firstSpace = auth.indexOf(' ');
+    if (firstSpace == -1)
     {
         throw new Error('Given authorization header is not valid, could not find the space between "Signature" and the other parts of the header');
     }
-    const fword = auth.substr(0, fspace);
-    const remaining = auth.substring(fspace + 1);
-    if (fword.toLowerCase() !== 'signature')
+    const firstWord = auth.substr(0, firstSpace);
+    const remaining = auth.substring(firstSpace + 1);
+    if (firstWord.toLowerCase() !== 'signature')
     {
         throw new Error('Given authorization header do not start with Signature');
     }
@@ -36,9 +36,9 @@ export function parseAuthorizationHeader(auth: string)
                 break;
             case 'algorithm':
                 {
-                    const algs = validateAlgorithm(value);
-                    output.algorithm = algs[0];
-                    output.hash = algs[1];
+                    const [algorithm, hash] = validateAlgorithm(value);
+                    output.algorithm = algorithm;
+                    output.hash = hash;
                 }
                 break;
             case 'headers':
