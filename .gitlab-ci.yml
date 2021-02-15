@@ -62,6 +62,9 @@ deploy:
     ## Add the SSH key to the agent store
     ## We're using tr to fix line endings which makes ed25519 keys work without extra base64 encoding.
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    ## Set known host
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
     ## Configure git
     - git config --global user.email "$KNOT_EMAIL"
 
