@@ -2,6 +2,10 @@
   "name": "@knotcity/http-request-signer",
   "version": "0.1.2",
   "description": "Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knotcity/http-requests-signer"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
