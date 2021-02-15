@@ -51,6 +51,8 @@ deploy:
     - npm publish --access public
 
 .setup-ssh-keys:
+  variables:
+    GIT_STRATEGY: clone
   before_script:
     ## Create the SSH directory and give it the right permissions
     - mkdir -p ~/.ssh
