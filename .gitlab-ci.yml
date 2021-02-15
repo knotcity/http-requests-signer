@@ -35,7 +35,7 @@ deploy-internal:
     - pre_prod
   before_script:
     - echo "@knotcity:registry=https://$KNOT_REPO" > .npmrc
-    - echo "//$KNOT_REPO/:_authToken=$NPM_TOKEN" >> .npmrc
+    - echo "//$KNOT_REPO/:_authToken=$KNOT_NPM_TOKEN" >> .npmrc
   script:
     - npm publish
 
@@ -45,6 +45,8 @@ deploy:
     - schedules
   only:
     - master
+  before_script:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
   script:
     - npm publish
 
