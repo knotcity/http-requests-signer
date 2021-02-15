@@ -1,6 +1,7 @@
-tslint.json
-tsconfig.json
 src/
-.gitlab-ci.yml
+example/
 dist/tsconfig.tsbuildinfo
+tsconfig.json
+.gitlab-ci.yml
 .eslintrc.json
+.gitignore
