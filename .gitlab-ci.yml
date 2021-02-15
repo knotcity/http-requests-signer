@@ -67,6 +67,8 @@ deploy:
     - chmod 644 ~/.ssh/known_hosts
     ## Configure git
     - git config --global user.email "$KNOT_EMAIL"
+    ## Create local branch
+    - git checkout -B "$CI_COMMIT_REF_NAME" "$CI_COMMIT_SHA"
 
 push-on-github:
   extends: .setup-ssh-keys
