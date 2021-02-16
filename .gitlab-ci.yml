@@ -27,7 +27,7 @@ build:
     paths:
       - dist/
 
-.deploy-base
+.deploy-base:
   stage: deploy
   except:
     - schedules
