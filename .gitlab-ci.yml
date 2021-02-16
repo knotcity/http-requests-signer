@@ -41,7 +41,7 @@ deploy-internal:
   script:
     - echo "@knotcity:registry=https://$KNOT_REPO" > .npmrc
     - echo "//$KNOT_REPO/:_authToken=$KNOT_NPM_TOKEN" >> .npmrc
-    - >
+    - |
       PKG_NAME=`cat package.json | jq -r '.name'`
       LOCAL_VERSION=`cat package.json | jq -r '.version'`
       REMOTE_VERSION=`npm view $PKG_NAME version --registry https://$KNOT_REPO`
@@ -58,7 +58,7 @@ deploy:
     - master
   script:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-    - >
+    - |
       PKG_NAME=`cat package.json | jq -r '.name'`
       LOCAL_VERSION=`cat package.json | jq -r '.version'`
       REMOTE_VERSION=`npm view $PKG_NAME version --registry https://registry.npmjs.org`
