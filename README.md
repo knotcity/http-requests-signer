@@ -1,11 +1,11 @@
 # Knot HTTP Requests Signer
 
-Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12.
+Library used to sign the HTTP request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12.
 More info on why we use it can be found [here](https://doc.knotcity.io/services/http-signature/).
 
 # Installation
 
-This project is written in Typescript using Node.js 12 and targeting es2017.
+This project is written in TypeScript using Node.js 12 and targeting es2017.
 It MAY work for older versions of Node.js.
 
 Install using npm:
@@ -16,12 +16,12 @@ npm install @knotcity/http-request-signer
 # Usage
 
 You have a client and server example in the `example/` folder.
-Import the module the same way you do normally.
+Import the module in the same way as you do normally.
 
 ```
-// Javascript
+// JavaScript
 const hrs = require('@knotcity/http-request-signer');
-// Typescript
+// TypeScript
 import hrs = require('@knotcity/http-request-signer');
 ```
 
@@ -44,7 +44,7 @@ To sign a request you need to add the `Authorization` header with the value give
 ```
 import http = require('http');
 
-// Make a request using node's http module, but you can also use other modules like axios
+// Make a request using node's HTTP module, but you can also use other modules like axios
 const req = http.request(...);
 
 // Fetch the private key from somewhere safe
@@ -69,7 +69,7 @@ req.setHeader('authorization', auth);
 
 ## Verifying a signature
 
-The verification process is similar to the signature process as we collect the same info, but using the public key instead of the private key. (as the server does not know the private key).
+The verification process is similar to the signature process as we collect the same info, but using the public key instead of the private key (as the server does not know the private key).
 
 ```
 try
