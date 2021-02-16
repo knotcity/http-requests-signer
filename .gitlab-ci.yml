@@ -31,7 +31,7 @@ build:
   stage: deploy
   except:
     - schedules
-  before-script:
+  before_script:
     - apk update && apk add --no-cache jq
 
 deploy-internal:
