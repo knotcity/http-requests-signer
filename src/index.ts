@@ -1,7 +1,8 @@
-import crypto = require('crypto');
+import crypto from 'crypto';
 
 import { sign } from './signer';
 import { verify } from './verifier';
+import { parseAuthorizationHeader } from './parser';
 import { Algo, AuthorizationHeaderComponents, DenormalizedData, Hash, normalizeData, stringifyNormalizedData } from './utils';
 
 export function generateECKeyPair()
@@ -34,5 +35,12 @@ export function verifyAuthorization(components: AuthorizationHeaderComponents, d
     return verify(stringData, components.signature, pubKey, components.hash);
 }
 
-export { parseAuthorizationHeader } from './parser';
+export { parseAuthorizationHeader };
 export type { AuthorizationHeaderComponents, Algo, Hash } from './utils';
+
+export default {
+    generateECKeyPair,
+    generateAuthorization,
+    verifyAuthorization,
+    parseAuthorizationHeader
+};

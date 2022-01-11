@@ -1,4 +1,4 @@
-import crypto = require('crypto');
+import crypto from 'crypto';
 
 import type { Hash } from './utils';
 
