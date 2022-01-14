@@ -1,3 +1,9 @@
+# 0.3.2 / 2022-01-14
+
+## :bug: Fixes
+
+* Bypass the export through a getter
+ 
 # 0.3.1 / 2022-01-14
 
 ## :bug: Fixes

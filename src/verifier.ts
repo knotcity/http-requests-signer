@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-import type { Hash } from './utils';
+import type { Hash } from './utils.js';
 
 export function verify(data: string, signature: string, publicKey: string, hash: Hash)
 {

@@ -1,9 +1,10 @@
 import * as crypto from 'crypto';
 
-import { sign } from './signer';
-import { verify } from './verifier';
-import { parseAuthorizationHeader } from './parser';
-import { Algo, AuthorizationHeaderComponents, DenormalizedData, Hash, normalizeData, stringifyNormalizedData } from './utils';
+import { parseAuthorizationHeader as _parseAuthorizationHeader } from './parser.js';
+
+import { sign } from './signer.js';
+import { verify } from './verifier.js';
+import { Algo, AuthorizationHeaderComponents, DenormalizedData, Hash, normalizeData, stringifyNormalizedData } from './utils.js';
 
 export function generateECKeyPair()
 {
@@ -35,8 +36,11 @@ export function verifyAuthorization(components: AuthorizationHeaderComponents, d
     return verify(stringData, components.signature, pubKey, components.hash);
 }
 
-export { parseAuthorizationHeader };
-export type { AuthorizationHeaderComponents, Algo, Hash } from './utils';
+export function parseAuthorizationHeader(auth: string) { // FIXME: To bypass the export through a getter
+    return _parseAuthorizationHeader(auth);
+}
+
+export type { AuthorizationHeaderComponents, Algo, Hash } from './utils.js';
 
 export default {
     generateECKeyPair,

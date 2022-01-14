@@ -1,4 +1,4 @@
-import { validateAlgorithm, AuthorizationHeaderComponentsNullable } from './utils';
+import { validateAlgorithm, AuthorizationHeaderComponentsNullable } from './utils.js';
 
 export function parseAuthorizationHeader(auth: string)
 {
