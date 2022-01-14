@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 
 import { sign } from './signer';
 import { verify } from './verifier';

@@ -1,7 +1,6 @@
 import http = require('http');
 
-import { verifyAuthorization } from '../dist';
-import { parseAuthorizationHeader } from '../dist/verifier';
+import { verifyAuthorization, parseAuthorizationHeader } from '@knotcity/http-request-signer';
 
 const pubKey = '-----BEGIN PUBLIC KEY-----\n' +
     'MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQBV3G4qtmU+GT+OihDP5sGZKNQMUzw\n' +

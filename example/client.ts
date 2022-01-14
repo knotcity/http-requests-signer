@@ -1,6 +1,6 @@
 import http = require('http');
 
-import { generateAuthorization } from '../dist';
+import { generateAuthorization } from '@knotcity/http-request-signer';
 
 const privKey = '-----BEGIN PRIVATE KEY-----\n' +
     'MIHuAgEAMBAGByqGSM49AgEGBSuBBAAjBIHWMIHTAgEBBEIAxfrhuLtAvLjB7rLX\n' +

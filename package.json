@@ -1,6 +1,6 @@
 {
   "name": "@knotcity/http-request-signer",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12",
   "repository": {
     "type": "git",
@@ -11,17 +11,18 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/mjs/index.js",
+      "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.js"
     }
   },
   "main": "dist/cjs/index.js",
-  "module": "dist/mjs/index.js",
+  "module": "dist/es/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "npm run build:cjs && npm run build:mjs",
-    "build:cjs": "tsc --outDir dist/cjs --module CommonJS",
-    "build:mjs": "tsc --outDir dist/mjs --module es2020",
+    "build": "npm run build:cjs && npm run build:es && npm run build:types",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "build:types": "tsc -p tsconfig.types.json",
     "lint": "eslint --ext ts src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

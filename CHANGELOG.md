@@ -1,3 +1,9 @@
+# 0.3.1 / 2022-01-14
+
+## :bug: Fixes
+
+* Fix types declaration
+
 # 0.3.0 / 2022-01-11
 
 ## :nut_and_bolt: Other
