@@ -1,3 +1,9 @@
+# 0.3.3 / 2022-01-21
+
+## :bug: Fixes
+
+* Fix DenormalizedData type
+ 
 # 0.3.2 / 2022-01-14
 
 ## :bug: Fixes

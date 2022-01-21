@@ -8,7 +8,7 @@ export type OrderedHeaderList = Array<{
 
 export interface DenormalizedData
 {
-    headers: { [header: string]: number | string | string[] | undefined };
+    headers: { [header: string]: number | string | string[] | boolean | undefined };
     method: string;
     path: string;
 }
