@@ -4,7 +4,7 @@ import { parseAuthorizationHeader as _parseAuthorizationHeader } from './parser.
 
 import { sign } from './signer.js';
 import { verify } from './verifier.js';
-import { Algo, AuthorizationHeaderComponents, DenormalizedData, Hash, normalizeData, stringifyNormalizedData } from './utils.js';
+import { Algo, AuthorizationHeaderComponents, DeNormalizedData, Hash, normalizeData, stringifyNormalizedData } from './utils.js';
 
 export function generateECKeyPair()
 {
@@ -21,7 +21,7 @@ export function generateECKeyPair()
     });
 }
 
-export function generateAuthorization(data: DenormalizedData, { headers, keyId, privateKey, hash, algorithm, hide_algorithm }: { headers: string[], keyId: string, privateKey: string, hash: Hash, algorithm: Algo, hide_algorithm?: boolean })
+export function generateAuthorization(data: DeNormalizedData, { headers, keyId, privateKey, hash, algorithm, hide_algorithm }: { headers: string[], keyId: string, privateKey: string, hash: Hash, algorithm: Algo, hide_algorithm?: boolean })
 {
     const normalized = normalizeData(data, { headers });
     const stringData = stringifyNormalizedData(normalized);
@@ -29,7 +29,7 @@ export function generateAuthorization(data: DenormalizedData, { headers, keyId, 
     return `Signature keyId="${keyId}",algorithm="${(hide_algorithm || true) ? 'hs2019' : `${algorithm}-${hash}`}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
 }
 
-export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DenormalizedData, pubKey: string)
+export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DeNormalizedData, pubKey: string)
 {
     const normalized = normalizeData(data, { headers: components.headers });
     const stringData = stringifyNormalizedData(normalized);

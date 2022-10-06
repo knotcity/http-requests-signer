@@ -7,7 +7,7 @@ export function parseAuthorizationHeader(auth: string)
     {
         throw new Error('Given authorization header is not valid, could not find the space between "Signature" and the other parts of the header');
     }
-    const firstWord = auth.substr(0, firstSpace);
+    const firstWord = auth.substring(0, firstSpace);
     const remaining = auth.substring(firstSpace + 1);
     if (firstWord.toLowerCase() !== 'signature')
     {
@@ -22,8 +22,8 @@ export function parseAuthorizationHeader(auth: string)
         {
             throw new Error('Given authorization header is not valid, missing an equal sign in "' + p + '"');
         }
-        const key = p.substr(0, eqIdx);
-        let value = p.substr(eqIdx + 1);
+        const key = p.substring(0, eqIdx);
+        let value = p.substring(eqIdx + 1);
         if (value.length < 2 || !value.startsWith('"') || !value.endsWith('"'))
         {
             throw new Error('Given authorization header is not valid, value should be quoted with double quotes in "' + p + '"');

@@ -1,3 +1,14 @@
+# 0.4.0 / 2022-10-06
+
+## :bug: Fixes
+
+* Fix headers not handling null values
+
+## :nut_and_bolt: Other
+
+* Fix type camel case
+* Update package-lock to v2
+
 # 0.3.3 / 2022-01-21
 
 ## :bug: Fixes

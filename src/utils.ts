@@ -6,9 +6,9 @@ export type OrderedHeaderList = Array<{
     values: string[]
 }>;
 
-export interface DenormalizedData
+export interface DeNormalizedData
 {
-    headers: { [header: string]: number | string | string[] | boolean | undefined };
+    headers: { [header: string]: number | string | string[] | boolean | undefined | null };
     method: string;
     path: string;
 }
@@ -78,7 +78,7 @@ export function stringifyNormalizedData(data: NormalizedData)
     return components.join('\n');
 }
 
-export function normalizeData(data: DenormalizedData, config: { headers: string[] })
+export function normalizeData(data: DeNormalizedData, config: { headers: string[] })
 {
     if (config.headers.length == 0)
     {
@@ -95,7 +95,7 @@ export function normalizeData(data: DenormalizedData, config: { headers: string[
         else
         {
             const hv = Object.entries(data.headers).find(v => v[0].toLowerCase() === hl);
-            if (!hv || hv[1] === undefined)
+            if (!hv || hv[1] === undefined || hv[1] === null)
             {
                 throw new Error('Missing header ' + h + ' in request');
             }
