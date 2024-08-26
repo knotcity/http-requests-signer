@@ -1,3 +1,16 @@
+# 0.5.1 / 2024-02-22
+
+## :nut_and_bolt: Other
+
+* Update dependencies
+
+# 0.5.0 / 2024-02-22
+
+## :nut_and_bolt: Other
+
+* Bump node version to v20.x
+* Update dependencies
+
 # 0.4.0 / 2022-10-06
 
 ## :bug: Fixes

@@ -26,7 +26,7 @@ export function generateAuthorization(data: DeNormalizedData, { headers, keyId, 
     const normalized = normalizeData(data, { headers });
     const stringData = stringifyNormalizedData(normalized);
     const signature = sign(stringData, privateKey, hash);
-    return `Signature keyId="${keyId}",algorithm="${(hide_algorithm || true) ? 'hs2019' : `${algorithm}-${hash}`}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
+    return `Signature keyId="${keyId}",algorithm="${hide_algorithm ?? true ? 'hs2019' : `${algorithm}-${hash}`}",headers="${headers.map(h => h.toLowerCase()).join(' ')}",signature="${signature}"`;
 }
 
 export function verifyAuthorization(components: AuthorizationHeaderComponents, data: DeNormalizedData, pubKey: string)
@@ -36,7 +36,8 @@ export function verifyAuthorization(components: AuthorizationHeaderComponents, d
     return verify(stringData, components.signature, pubKey, components.hash);
 }
 
-export function parseAuthorizationHeader(auth: string) { // FIXME: To bypass the export through a getter
+export function parseAuthorizationHeader(auth: string)
+{ // FIXME: To bypass the export through a getter
     return _parseAuthorizationHeader(auth);
 }
 

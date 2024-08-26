@@ -2,8 +2,8 @@ export type Algo = 'rsa' | 'dsa' | 'ecdsa';
 export type Hash = 'sha256' | 'sha512';
 
 export type OrderedHeaderList = Array<{
-    name: string,
-    values: string[]
+    name: string;
+    values: string[];
 }>;
 
 export interface DeNormalizedData
@@ -21,7 +21,7 @@ export interface NormalizedData
 interface AuthorizationHeaderComponentsBase
 {
     keyId: string;
-    signature: string
+    signature: string;
     headers: string[];
 }
 
