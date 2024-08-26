@@ -4,7 +4,7 @@
   "description": "Library used to sign http request as defined in https://tools.ietf.org/html/draft-cavage-http-signatures-12",
   "repository": {
     "type": "git",
-    "url": "https://github.com/knotcity/http-requests-signer"
+    "url": "git+https://github.com/knotcity/http-requests-signer.git"
   },
   "license": "ISC",
   "author": "Knot",
